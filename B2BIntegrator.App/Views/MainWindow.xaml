@@ -15,8 +15,9 @@
                    HorizontalAlignment="Center"
                    Margin="0, 0, 0, 20" />
 
-            <Button Content="Testuj Połączenie"
-                Command="{Binding TestConnectionCommand}"
+            <!-- MVVM Community Toolkit automatycznie suffixes async methods with 'Command' -->
+            <Button Content="Pobierz aktualny kurs dolara"
+                Command="{Binding FetchUsdRateCommand}"
                 Padding="20, 10"
                 FontSize="16" />
 
