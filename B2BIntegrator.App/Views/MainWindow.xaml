@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
+            <TextBlock Text="{Binding StatusMessage}" 
+                   FontSize="24" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0, 0, 0, 20" />
+
+            <Button Content="Testuj Połączenie"
+                Command="{Binding TestConnectionCommand}"
+                Padding="20, 10"
+                FontSize="16" />
+
+        </StackPanel>
     </Grid>
 </Window>

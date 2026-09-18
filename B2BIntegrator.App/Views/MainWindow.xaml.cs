@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using B2BIntegrator.App.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,8 @@ namespace B2BIntegrator.App
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
         }
     }
 }
