@@ -1,21 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using B2BIntegrator.App.Services;
 
 namespace B2BIntegrator.App.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+    private readonly NbpApiService _nbpService = new();
+
     [ObservableProperty]
-    public partial string StatusMessage { get; set; } = "System gotowy do pracy";
+    public partial string StatusMessage { get; set; } = "Gotowe. Kliknij przycisk," +
+                                                        " aby pobrać kurs dolara.";
 
     [RelayCommand]
-    private void TestConnection()
+    private async Task FetchUsdRateAsync()
     {
-        StatusMessage = "Połączono z testowym API";
+        StatusMessage = "Pobieram dane z NBP API...";
+
+        decimal? rate = await _nbpService.GetUsdExchangeRateAsync();
+
+        if (rate.HasValue)
+        {
+            StatusMessage = $"Aktualny kurs dolara: {rate.Value} PLN";
+        }
+        else
+        {
+            StatusMessage = "Błąd: nie można było pobrać kursu.";
+        }
     }
 }
 
