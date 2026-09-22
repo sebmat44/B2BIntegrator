@@ -52,11 +52,11 @@ public partial class MainViewModel : ObservableObject
 
         if (isValid)
         {
-            ViesResult = $"VALID VAT ID\nCompany: {companyName}\nAddress: {address}";
+            ViesResult = $"NIP POPRAWNY\nFirma: {companyName}\nAdres: {address}";
         }
         else
         {
-            ViesResult = "INVALID VAT ID or connection failed.";
+            ViesResult = "NIP NIEPOPRAWNY lub błąd połączenia.";
         }
     }
 }
