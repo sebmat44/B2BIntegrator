@@ -1,0 +1,19 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ViesApi"
+    ],
+    "references": [
+      "CommunityToolkit.Mvvm, {CommunityToolkit.Mvvm, 8.4.2}"
+    ],
+    "targetFramework": "net10.0-windows",
+    "typeReuseMode": "All"
+  }
+}
