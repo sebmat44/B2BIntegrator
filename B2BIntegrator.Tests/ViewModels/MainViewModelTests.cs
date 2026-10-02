@@ -22,8 +22,12 @@ namespace B2BIntegrator.Tests.ViewModels;
         // ACT
         viewModel.FetchUsdRateCommand.Execute(null);
 
-        // ASSERT: We check if the Polish UI text contains the fake value
-        Assert.Contains("Aktualny kurs dolara: 4,15 PLN", viewModel.StatusMessage);
+        // ASSERT
+        //woraround for language localization
+        decimal expectedRate = 4.15m;
+        string expectedRateString = expectedRate.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+        Assert.Contains($"Aktualny kurs dolara: {expectedRateString} PLN", viewModel.StatusMessage);
     }
 
     [Fact]

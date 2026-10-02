@@ -29,7 +29,8 @@ public partial class MainViewModel(INbpApiService nbpService, IViesApiService vi
 
         if (rate.HasValue)
         {
-            StatusMessage = $"Aktualny kurs dolara: {rate.Value} PLN";
+            StatusMessage = $"Aktualny kurs dolara: " +
+                $"{rate.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)} PLN";
         }
         else
         {
