@@ -1,4 +1,5 @@
-﻿using B2BIntegrator.App.ViewModels;
+﻿using B2BIntegrator.App.Services;
+using B2BIntegrator.App.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,18 +11,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace B2BIntegrator.App
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
+namespace B2BIntegrator.App.Views;
 
-            DataContext = new MainViewModel();
-        }
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
+{
+    public MainWindow(MainViewModel viewModel)
+    {
+        InitializeComponent();
+
+        DataContext = viewModel;
     }
 }

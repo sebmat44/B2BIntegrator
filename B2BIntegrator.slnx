@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="global.json" />
+  </Folder>
   <Project Path="B2BIntegrator.App/B2BIntegrator.App.csproj" />
   <Project Path="B2BIntegrator.Tests/B2BIntegrator.Tests.csproj" />
 </Solution>

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace B2BIntegrator.App.Services;
 
-public class ViesApiService
+public class ViesApiService : IViesApiService
 {
     public async Task<(bool IsValid, string CompanyName, string Address)> VerifyVatAsync(string countryCode, string vatNumber)
     {
