@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace B2BIntegrator.App.ViewModels;
 
-public partial class MainViewModel : ObservableObject
+public partial class MainViewModel(INbpApiService nbpService, IViesApiService viesService) : ObservableObject
 {
-    private readonly NbpApiService _nbpService = new();
-    private readonly ViesApiService _viesService = new();
+    private readonly INbpApiService _nbpService = nbpService;
+    private readonly IViesApiService _viesService = viesService;
 
     [ObservableProperty]
     public partial string StatusMessage { get; set; } = "Gotowe. Kliknij przycisk," +

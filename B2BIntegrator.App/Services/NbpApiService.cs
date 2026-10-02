@@ -4,7 +4,7 @@ using B2BIntegrator.App.Models;
 
 namespace B2BIntegrator.App.Services;
 
-public class NbpApiService
+public class NbpApiService : INbpApiService
 {
     private static readonly HttpClient _httpClient = new HttpClient();
 
