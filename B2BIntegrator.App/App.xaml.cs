@@ -20,12 +20,16 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         //singleton
-        services.AddSingleton<INbpApiService, NbpApiService>();
-        services.AddSingleton<IViesApiService, ViesApiService>();
+        _ = services.AddHttpClient<INbpApiService, NbpApiService>(static client =>
+        {
+            client.BaseAddress = new Uri("http://api.nbp.pl/api/");
+            client.Timeout = TimeSpan.FromSeconds(10); // Dobra praktyka: globalny timeout
+        });
+        _ = services.AddSingleton<IViesApiService, ViesApiService>();
 
         //new instance with every request
-        services.AddTransient<MainViewModel>();
-        services.AddTransient<MainWindow>();
+        _ = services.AddTransient<MainViewModel>();
+        _ = services.AddTransient<MainWindow>();
 
         //buil container
         Services = services.BuildServiceProvider();

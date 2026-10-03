@@ -4,17 +4,17 @@ using B2BIntegrator.App.Models;
 
 namespace B2BIntegrator.App.Services;
 
-public class NbpApiService : INbpApiService
+public class NbpApiService(HttpClient httpClient) : INbpApiService
 {
-    private static readonly HttpClient _httpClient = new HttpClient();
+    private readonly HttpClient _httpClient = httpClient;
 
     public async Task<decimal?> GetUsdExchangeRateAsync()
     {
-        string url = "http://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json";
-
         try
         {
-            var response = await _httpClient.GetFromJsonAsync<NbpResponse>(url);
+            //rest of the url address is taken from configured httpClient
+            var response = 
+                await _httpClient.GetFromJsonAsync<NbpResponse>("exchangerates/rates/A/USD/");
 
             return response?.Rates?[0].Mid;
         }
