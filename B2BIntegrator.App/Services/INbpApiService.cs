@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-
-namespace B2BIntegrator.App.Services;
+﻿namespace B2BIntegrator.App.Services;
 
 public interface INbpApiService
 {
-    Task<decimal?> GetUsdExchangeRateAsync();
+    Task<decimal?> GetUsdExchangeRateAsync(CancellationToken cancellationToken = default);
 }

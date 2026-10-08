@@ -17,7 +17,15 @@
         <StackPanel Grid.Row="0" Margin="0, 0, 0, 40">
             <TextBlock Text="1. Kursy walut NBP (REST/JSON)" FontWeight="Bold" FontSize="16" Margin="0, 0, 0, 10" />
             <TextBlock Text="{Binding StatusMessage}" FontSize="14" Margin="0, 0, 0, 10" />
-            <Button Content="Pobierz aktualny kurs USD" Command="{Binding FetchUsdRateCommand}" Padding="10, 5" Width="200" HorizontalAlignment="Left"/>
+            <Button Content="Pobierz aktualny kurs USD" 
+                    Command="{Binding FetchUsdRateCommand}" 
+                    Padding="10, 5" Width="200" 
+                    HorizontalAlignment="Left"/>
+            <Button Content="Anuluj" 
+            Command="{Binding FetchUsdRateCancelCommand}" 
+            IsEnabled="{Binding FetchUsdRateCommand.IsRunning}"
+            Width="80" Height="30" 
+            HorizontalAlignment="Left"/>
         </StackPanel>
 
         <!-- VIES Section (Row 1) -->
