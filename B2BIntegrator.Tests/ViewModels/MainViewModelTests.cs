@@ -1,6 +1,7 @@
 ﻿using B2BIntegrator.App.Services;
 using B2BIntegrator.App.ViewModels;
 using Moq;
+using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
 namespace B2BIntegrator.Tests.ViewModels;
@@ -9,21 +10,25 @@ namespace B2BIntegrator.Tests.ViewModels;
     {
 
     [Fact]
-    public void FetchUsdRateCommand_UpdatesStatusMessageWithRate()
+    public async Task FetchUsdRateCommand_UpdatesStatusMessageWithRate()
     {
-        // ARRANGE: Inject FAKE services
+        // ARRANGE
         var mockNbp = new Mock<INbpApiService>();
-        mockNbp.Setup(x => x.GetUsdExchangeRateAsync()).ReturnsAsync(4.15m);
+
+        mockNbp.Setup(x => x.GetUsdExchangeRateAsync(It.IsAny<CancellationToken>()))
+               .ReturnsAsync(4.15m);
 
         var mockVies = new Mock<IViesApiService>();
 
-        var viewModel = new MainViewModel(mockNbp.Object, mockVies.Object);
+        var viewModel = new MainViewModel(
+            mockNbp.Object,
+            mockVies.Object,
+            NullLogger<MainViewModel>.Instance);
 
         // ACT
-        viewModel.FetchUsdRateCommand.Execute(null);
+        await viewModel.FetchUsdRateCommand.ExecuteAsync(null);
 
         // ASSERT
-        //woraround for language localization
         decimal expectedRate = 4.15m;
         string expectedRateString = expectedRate.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
@@ -43,7 +48,9 @@ namespace B2BIntegrator.Tests.ViewModels;
                                                           "SuperFirmaInc", 
                                                           "ul. Adresowa 1a, Warszawa"));
 
-        var viewModel = new MainViewModel(mockNbp.Object, mockVies.Object)
+        var viewModel = new MainViewModel(mockNbp.Object, 
+            mockVies.Object, 
+            NullLogger<MainViewModel>.Instance)
         {
             VatNumber = "7740001454"
         };
@@ -66,7 +73,9 @@ namespace B2BIntegrator.Tests.ViewModels;
 
         var mockVies = new Mock<IViesApiService>();
 
-        var viewModel = new MainViewModel(mockNbp.Object, mockVies.Object)
+        var viewModel = new MainViewModel(mockNbp.Object, 
+            mockVies.Object, 
+            NullLogger<MainViewModel>.Instance)
         {
             VatNumber = string.Empty
         };
